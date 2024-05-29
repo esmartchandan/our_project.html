@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            
+            box-sizing: border-box;
+            font-family: sans-serif;
+
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+
+            background-color: #abf2a2;
+        }
+        .container{
+            position: relative;
+        }
+        .clock{
+            height: 500px;
+            width: 500px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);;
+            background-color: rgba(255,255,255,0.1);
+            box-shadow: 0px 0px 30px rgba(220, 20, 20, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .clock span{
+            position: absolute;
+            transform: rotate(calc(30deg *var(--i)));
+            inset: 12px;
+            text-align: center;
+        }
+        .clock span b{
+            transform: rotate(calc(-30deg *var(--i)));
+            display: inline-block;
+            font-size: 23px;
+            color: aliceblue;
+        }
+        .clock::before{
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: white;
+        }
+        .hand i{
+            position: absolute;
+            background-color: var(--clr);
+            width: 4px;
+            height: 150px;
+            border: 8px;
+            border-radius: 30px;
+
+        }
+        
+        .hand{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        .clock img {
+            border-radius: 50%;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="clock">
+            
+
+            <img height="100%" width="100%" src="flower.jpg" alt="">
+
+            <div style="--clr: red" id="hours" class="hand"><i></i></div>
+            <div style="--clr : red"  id="minute"  class="hand"><i></i></div>
+            <div style="--clr: red" id="second" class="hand"><i></i></div>
+
+
+            <span style="--i:1;"><b>1</b></span>
+            <span style="--i:2;"><b>2</b></span>
+            <span style="--i:3;"><b>3</b></span>
+            <span style="--i:4;"><b>4</b></span>
+            <span style="--i:5;"><b>5</b></span>
+            <span style="--i:6;"><b>6</b></span>
+            <span style="--i:7;"><b>7</b></span>
+            <span style="--i:8;"><b>8</b></span>
+            <span style="--i:9;"><b>9</b></span>
+            <span style="--i:10;"><b>10</b></span>
+            <span style="--i:11;"><b>11</b></span>
+            <span style="--i:12;"><b>12</b></span>
+        </div>
+    
+    </div>
+</body>
+<script>
+
+    const hr = document.getElementById('hours')
+    const min = document.getElementById('minute')
+    const sec = document.getElementById('second')
+
+    function displayTime(){
+        let date = new Date();
+        let hh = date.getHours();
+        let mm = date.getMinutes();
+        let ss = date.getSeconds();
+
+        let hRotation= 30*hh+mm/2;
+        let mRotation= 6*mm;
+        let sRotation= 6*ss;
+
+        hr.style.transform = `rotate(${hRotation}deg)`;
+        min.style.transform = `rotate(${mRotation}deg)`;
+        sec.style.transform = `rotate(${sRotation}deg)`;
+    }
+    setInterval(displayTime,1000)
+</script>
+
+<!-- <script>
+    // Create an HTML structure for the clock
+const clockContainer = document.createElement("div");
+clockContainer.classList.add("analog-clock");
+document.body.appendChild(clockContainer);
+
+// Create clock face
+const clockFace = document.createElement("div");
+clockFace.classList.add("clock-face");
+clockContainer.appendChild(clockFace);
+
+// Create hour hand
+const hourHand = document.createElement("div");
+hourHand.classList.add("hand", "hour-hand");
+clockFace.appendChild(hourHand);
+
+// Create minute hand
+const minuteHand = document.createElement("div");
+minuteHand.classList.add("hand", "minute-hand");
+clockFace.appendChild(minuteHand);
+
+// Create second hand
+const secondHand = document.createElement("div");
+secondHand.classList.add("hand", "second-hand");
+clockFace.appendChild(secondHand);
+
+// Update clock hands
+function updateClock() {
+  const now = new Date();
+  const hours = now.getHours() % 12;
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+
+  const hourRotation = (360 / 12) * hours + 90;
+  const minuteRotation = (360 / 60) * minutes + 90;
+  const secondRotation = (360 / 60) * seconds + 90;
+
+  hourHand.style.transform = `rotate(${hourRotation}deg)`;
+  minuteHand.style.transform = `rotate(${minuteRotation}deg)`;
+  secondHand.style.transform = `rotate(${secondRotation}deg)`;
+}
+
+// Update clock every second
+setInterval(updateClock, 1000);
+
+// Apply styles (you can customize these)
+clockContainer.style.width = "100vh";
+clockContainer.style.height = "100vh";
+clockFace.style.border = "2px solid black";
+clockFace.style.borderRadius = "50%";
+hourHand.style.backgroundColor = "black";
+minuteHand.style.backgroundColor = "black";
+secondHand.style.backgroundColor = "red";
+
+</script> -->
+</html>

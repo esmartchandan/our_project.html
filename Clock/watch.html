@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f4f4;
+        }
+        .box{
+            margin-top: 80px;
+            border-radius: 2cqi;
+            background-color: #414141;
+            height: 80vh;
+            width: 60vh;
+            border: 2px solid rgb(27, 32, 180);
+            box-shadow: 1px 1px 20px 19px #8286ed
+        }
+        .p{
+            font-size: 30px;
+            font-family: sans-serif;
+            font-weight: 700;
+            scroll-margin-top: 23px;
+            color: orange;
+            margin: 23px 23px;
+        }
+        .main{
+            font-size: 28px;
+            font-family: sans-serif;
+            font-weight: 500;
+            scroll-margin-top: 23px;
+            color: #f9f4f4;
+            margin: 10px 73px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1 class="p"> let <span style="color: #f9f4f4;">clock = {</span> </h1>
+          <p class="main">hours: <span id="h" style="color: #1f96d1;"></span ><span>,</span></p>
+          <p class="main">minute : <span id="m" style="color: #1f96d1;"></span ><span>,</span></p>
+          <p class="main">second : <span id="s" style="color: #1f96d1;"></span ><span>,</span></p>
+          <p class="main">period : <span id="pm" style="color: #1f96d1;"></span ><span>,</span></p>
+          <p class="main">day : <span id="days" style="color: #1f96d1;"></span ><span>,</span></p>
+          <p class="main">month : <span id="mon" style="color: #1f96d1;"></span ><span>,</span></p>
+          <p class="main">year : <span id="year" style="color: #1f96d1;"></span ><span>,</span></p>
+          <p class="p" style="color: #f9f4f4;">};</p>
+    </div>
+</body><script>
+    const pad = (num) => (num<10 ? "0" + num  : num)
+
+    setInterval(() =>{
+        let date = new Date();
+
+        let hours = date.getHours()%12;
+        // hours = hours % 12;
+        // hours = hours == 0 ? 12 : hours;
+      let ampm = hours >= 12 ? "AM" : "PM";
+    document.getElementById('h').innerHTML=`${pad(hours)}`
+    let minute = date.getMinutes();
+    document.getElementById('m').innerHTML=`${pad(minute)}`
+    let second = date.getSeconds();
+    document.getElementById('s').innerHTML=`${pad(second)}`
+    document.getElementById('pm').innerHTML=`${ampm}`
+},1000)
+const date = new Date();
+let day = date.getDate();
+let month = date.getMonth();
+let year = date.getFullYear();
+document.getElementById('days').innerHTML=`${pad(day)}`
+document.getElementById('mon').innerHTML=`${pad(month)}`
+document.getElementById('year').innerHTML=`${year}`
+</script>
+</html>
